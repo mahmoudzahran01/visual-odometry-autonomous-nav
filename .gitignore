@@ -58,12 +58,9 @@ ehthumbs.db
 Thumbs.db
 
 # Project specific
-results/
 *.jpg
-*.png
 *.mp4
 *.npy
 
-# Data directories (uncomment to exclude data files)
-# model/
-# images/
+# Specifically don't ignore these files
+!results/camera_trajectory.png

@@ -46,6 +46,52 @@ visual-odometry/
 - Matplotlib
 - SciPy
 
+## Data
+
+The system requires two types of data:
+
+### 1. Camera Model Files
+
+These files contain camera calibration information and the lookup table for undistortion:
+
+- `stereo_narrow_left.txt` - Contains camera intrinsic parameters
+- `stereo_narrow_left_distortion_lut.bin` - Contains the undistortion lookup table
+
+You can download these files from:
+- [Oxford Robotcar Dataset](https://robotcar-dataset.robots.ox.ac.uk/downloads/) (requires registration)
+- Or create a sample version using:
+  ```python
+  # Example content for stereo_narrow_left.txt
+  # fx fy cx cy
+  964.828979 964.828979 643.788025 484.407990
+  # Camera to image transform (4x4 matrix)
+  0.000000 -0.000000 1.000000 0.000000
+  1.000000 0.000000 -0.000000 0.000000
+  0.000000 1.000000 0.000000 0.000000
+  0.000000 0.000000 0.000000 1.000000
+  ```
+
+### 2. Image Sequence
+
+The system requires a sequence of images captured from a moving camera. You can use:
+
+- [KITTI Visual Odometry Dataset](http://www.cvlibs.net/datasets/kitti/eval_odometry.php)
+- [Oxford Robotcar Dataset](https://robotcar-dataset.robots.ox.ac.uk/)
+- [TUM RGB-D Dataset](https://vision.in.tum.de/data/datasets/rgbd-dataset)
+
+Download instructions for KITTI (example):
+```bash
+# Download a sequence
+wget https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0001/2011_09_26_drive_0001_sync.zip
+
+# Extract images
+unzip 2011_09_26_drive_0001_sync.zip -d data
+# Copy image files to your images/ directory
+cp data/2011_09_26/2011_09_26_drive_0001_sync/image_00/data/*.png images/
+```
+
+Place the camera model files in the `model/` directory and the image sequence in the `images/` directory.
+
 ## Setup
 
 ### Using conda (recommended)
